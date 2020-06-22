@@ -19,7 +19,7 @@ def load_data(messages_filepath, categories_filepath):
     categories = pd.read_csv(categories_filepath)
     
     # merge datasets
-    df = messages.merge(categories, on='id')
+    df = pd.merge(messages, categories, on='id')
     
     return df
 
@@ -47,9 +47,8 @@ def clean_data(df):
     for column in categories:
         # set each value to be the last character of the string
         categories[column] = categories[column].str[-1]
-    
-    # convert column from string to numeric
-    categories[column] = pd.to_numeric(categories[column])
+        # convert column from string to numeric
+        categories[column] = pd.to_numeric(categories[column])
     
     # drop the original categories column from `df`
     df.drop('categories', inplace=True, axis=1)
