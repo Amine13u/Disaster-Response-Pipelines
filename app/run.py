@@ -102,9 +102,6 @@ def index():
                 'yaxis': {
                     'title': "Count"
                 },
-                'xaxis': {
-                    'title': "Categories"
-                }
             }
         }
     ]
