@@ -83,8 +83,7 @@ def build_model():
 
     # Setting parameters to test
     parameters = {'clf__estimator__n_estimators': [50, 100],
-                  'clf__estimator__min_samples_split': [2, 3, 4],
-                  'clf__estimator__criterion': ['entropy', 'gini']
+                  'clf__estimator__min_samples_split': [2, 3]
                  }
 
     # Testing parameters
@@ -105,10 +104,11 @@ def evaluate_model(model, X_test, Y_test, category_names):
     Output : None
     '''
     y_pred = model.predict(X_test)
-    
+    y_pred_df = pd.DataFrame(y_pred, columns = category_names)
+
     for column in category_names:
         print('Category : ' + column)
-        print(classification_report(y_test[column], y_pred_df[column]))
+        print(classification_report(Y_test[column], y_pred_df[column]))
     
 
 def save_model(model, model_filepath):
